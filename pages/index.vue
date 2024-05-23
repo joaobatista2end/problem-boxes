@@ -1,10 +1,7 @@
 <template>
   <div>
     <div class="max-w-screen-lg mx-auto px-4 lg:px-0">
-      <div class="mb-4">
-        <h3 class="text-2xl text-zinc-800 mb-6 font-bold">
-          Caixas de Problemas
-        </h3>
+      <div class="mb-8">
         <div
           class="flex items-center gap-x-4 border-amber-500/30 border-2 px-4 py-2 rounded-md bg-amber-100/20"
         >
