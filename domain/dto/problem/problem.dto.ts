@@ -14,7 +14,7 @@ export const ProblemSchema = z.object({
   title: z.string().max(180),
   description: z.string(),
   attachments: z.array(z.string()),
-  tags: z.array(ProblemTagSchema),
+  tags: z.array(z.string()),
 });
 
 export type ProblemDto = z.infer<typeof ProblemSchema>;
