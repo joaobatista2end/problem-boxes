@@ -4,7 +4,7 @@
     @click="redirectToProblemBoxPage"
   >
     <div
-      class="w-full relative rounded-md min-h-[260px] p-4 bg-gradient-to-tr from-orange-200 hover:from-orange-300 hover:to-amber-200 to-amber-100"
+      class="w-full relative rounded-md min-h-[260px] px-2 py-4 bg-gradient-to-tr from-orange-200 hover:from-orange-300 hover:to-amber-200 to-amber-100"
     >
       <h3 class="text-2xl text-center font-medium mb-4 text-cyan-950">
         {{ data.title }}

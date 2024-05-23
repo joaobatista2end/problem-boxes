@@ -10,4 +10,14 @@ export const ProblemBoxSchema = z.object({
   problems: z.array(ProblemSchema),
 });
 
+export const ProblemBoxWithoutProblemsSchema = z.object({
+  id: z.string().optional(),
+  title: z.string(),
+  description: z.string(),
+  thumbnail_url: z.string(),
+});
+
 export type ProblemBoxDto = z.infer<typeof ProblemBoxSchema>;
+export type ProblemBoxWithoutProblemsDto = z.infer<
+  typeof ProblemBoxWithoutProblemsSchema
+>;

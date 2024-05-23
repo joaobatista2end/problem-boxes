@@ -6,10 +6,22 @@ export default defineNuxtConfig({
     "@nuxtjs/tailwindcss",
     "@vueuse/nuxt",
     "nuxt-lucide-icons",
+    "@nuxtjs/google-fonts",
+    "dayjs-nuxt",
   ],
+  googleFonts: {
+    base64: true,
+    fontsDir: "assets/fonts",
+    outputDir: "assets",
+    overwriting: true,
+    families: {
+      Poppins: true,
+    },
+  },
   tailwindcss: {
+    cssPath: "assets/css/tailwind.css",
     config: {
-      plugins: [" @tailwindcss/line-clamp"],
+      plugins: ["@tailwindcss/line-clamp"],
     },
   },
   supabase: {

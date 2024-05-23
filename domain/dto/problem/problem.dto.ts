@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { ProblemTagSchema } from "../problem-tag/problem-tag.dto";
+import { ProblemBoxWithoutProblemsSchema } from "../problem-box/problem-box.dto";
 
 export const CreateProblemSchema = z.object({
   title: z.string().max(180),
@@ -15,6 +15,8 @@ export const ProblemSchema = z.object({
   description: z.string(),
   attachments: z.array(z.string()),
   tags: z.array(z.string()),
+  problemBox: ProblemBoxWithoutProblemsSchema,
+  created_at: z.string(),
 });
 
 export type ProblemDto = z.infer<typeof ProblemSchema>;
