@@ -12,7 +12,7 @@
 
     <!-- Thumb -->
     <div
-      class="mb-8 gap-x-4 p-4 bg-gray-50 rounded-md flex border-slate-200 border-2"
+      class="mb-6 gap-x-4 p-4 bg-gray-50 rounded-md flex border-slate-200 border-2"
       v-if="problemBox"
     >
       <img :src="problemBox?.thumbnail_url" alt="" class="max-h-[140px]" />
@@ -24,12 +24,20 @@
       </div>
     </div>
 
+    <!-- Register Problem -->
+    <div class="mb-2 flex justify-end">
+      <NuxtLink :to="{ name: 'problem-boxes-id-register-problem', params: { id: problemBox?.id }}" class="py-2 px-2 bg-gradient-to-tr from-orange-300 to-amber-200 rounded-md text-sm border-orange-300 border-2">
+        <LucideListPlus class="inline mr-2" :size="18" />
+        Adicionar problema
+      </NuxtLink>
+    </div>
+
+    <!-- Problems -->
     <div>
       <h3 class="mb-4 text-xl font-medium text-slate-800">
         Lista de problemas
       </h3>
 
-      <!-- Problems -->
       <div class="grid grid-cols-3 gap-x-2">
         <div
           v-if="!loading && !problemBox?.problems?.length"

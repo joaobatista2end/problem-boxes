@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-10">
+  <div class="py-10 md:px-8">
     <div
       class="max-w-screen-lg mx-auto px-4 lg:px-0 border-b border-slate-200 pb-3 mb-6"
     >
