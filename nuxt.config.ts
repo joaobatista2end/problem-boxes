@@ -15,7 +15,7 @@ export default defineNuxtConfig({
     outputDir: "assets",
     overwriting: true,
     families: {
-      Poppins: true,
+      Poppins: [400, 600, 800],
     },
   },
   tailwindcss: {

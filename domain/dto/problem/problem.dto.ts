@@ -2,15 +2,16 @@ import { z } from "zod";
 
 import { ProblemBoxWithoutProblemsSchema } from "../problem-box/problem-box.dto";
 
-export const CreateProblemSchema = z.object({
+export const RegisterProblemSchema = z.object({
   title: z.string().max(180),
   description: z.string(),
-  attachments: z.array(z.instanceof(File)),
-  tags: z.array(z.string()),
+  problem_box_id: z.number().optional(),
+  attachments: z.array(z.instanceof(File)).optional(),
+  tags: z.string(),
 });
 
 export const ProblemSchema = z.object({
-  id: z.string(),
+  id: z.number(),
   title: z.string().max(180),
   description: z.string(),
   attachments: z.array(z.string()),
@@ -20,4 +21,4 @@ export const ProblemSchema = z.object({
 });
 
 export type ProblemDto = z.infer<typeof ProblemSchema>;
-export type CreateProblemDto = z.infer<typeof CreateProblemSchema>;
+export type RegisterProblemDto = z.infer<typeof RegisterProblemSchema>;

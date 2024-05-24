@@ -3,7 +3,7 @@ import { z } from "zod";
 import { ProblemSchema } from "../problem/problem.dto";
 
 export const ProblemBoxSchema = z.object({
-  id: z.string().optional(),
+  id: z.number().optional(),
   title: z.string(),
   description: z.string(),
   thumbnail_url: z.string(),

@@ -26,7 +26,13 @@
 
     <!-- Register Problem -->
     <div class="mb-2 flex justify-end">
-      <NuxtLink :to="{ name: 'problem-boxes-id-register-problem', params: { id: problemBox?.id }}" class="py-2 px-2 bg-gradient-to-tr from-orange-300 to-amber-200 rounded-md text-sm border-orange-300 border-2">
+      <NuxtLink
+        :to="{
+          name: 'problem-boxes-id-register-problem',
+          params: { id: problemBox?.id },
+        }"
+        class="py-2 px-2 bg-gradient-to-tr from-orange-300 to-amber-200 rounded-md text-sm border-orange-300 border-2"
+      >
         <LucideListPlus class="inline mr-2" :size="18" />
         Adicionar problema
       </NuxtLink>
@@ -38,7 +44,7 @@
         Lista de problemas
       </h3>
 
-      <div class="grid grid-cols-3 gap-x-2">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
         <div
           v-if="!loading && !problemBox?.problems?.length"
           class="flex items-center gap-x-4 border-slate-500/30 border-2 px-4 py-2 rounded-md bg-slate-100/20"
@@ -65,18 +71,20 @@
 
           <div class="mb-3 border-t pt-2" v-if="problem?.tags?.length">
             <span class="text-sm mr-1 text-slate-600">Tags: </span>
-            <span
-              class="text-xs bg-amber-400 text-slate-800 font-medium px-2 py-1 rounded-full"
-              v-for="tag in problem.tags"
-              :key="tag"
-            >
-              {{ tag }}
-            </span>
+            <div class="inline-flex gap-x-2">
+              <span
+                class="text-xs bg-amber-400 text-slate-800 font-medium px-2 py-1 rounded-full"
+                v-for="tag in problem.tags"
+                :key="tag"
+              >
+                {{ tag }}
+              </span>
+            </div>
           </div>
 
           <div class="flex items-end justify-end flex-1">
             <NuxtLink
-              class="h-[36px] text-sm px-4 py-2 font-normal bg-slate-700 text-white rounded-md hover:bg-slate-600"
+              class="text-xs px-3 py-2 font-normal bg-slate-700 text-white rounded-md hover:bg-slate-600"
               :to="{ name: 'problem-id', params: { id: problem.id } }"
             >
               Visualizar

@@ -41,13 +41,15 @@
 
         <div class="mb-1 border-t pt-2" v-if="problem?.tags?.length">
           <span class="text-sm mr-1 text-slate-600">Tags: </span>
-          <span
-            class="text-xs bg-amber-400 text-slate-800 font-medium px-2 py-1 rounded-full"
-            v-for="tag in problem.tags"
-            :key="tag"
-          >
-            {{ tag }}
-          </span>
+          <div class="inline-flex gap-x-2">
+            <span
+              class="text-xs bg-amber-400 text-slate-800 font-medium px-2 py-1 rounded-full"
+              v-for="tag in problem.tags"
+              :key="tag"
+            >
+              {{ tag }}
+            </span>
+          </div>
         </div>
 
         <div class="mb-6">
