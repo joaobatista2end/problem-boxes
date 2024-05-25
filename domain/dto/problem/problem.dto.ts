@@ -3,10 +3,11 @@ import { z } from "zod";
 import { ProblemBoxWithoutProblemsSchema } from "../problem-box/problem-box.dto";
 
 export const RegisterProblemSchema = z.object({
-  title: z.string().max(180),
-  description: z.string(),
-  problem_box_id: z.number().optional(),
-  attachments: z.array(z.instanceof(File)).optional(),
+  title: z
+    .string({ message: "Título requerido" })
+    .max(180, { message: "O título deve ter no máximo 180 caracteres" }),
+  description: z.string({ message: "Descrição requerido" }),
+  problem_box_id: z.number(),
   tags: z.string(),
 });
 

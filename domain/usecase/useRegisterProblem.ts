@@ -5,47 +5,42 @@ import type {
 
 const supabase = useSupabaseClient();
 const loading = ref<boolean>();
-const problem = ref<RegisterProblemDto>({
-  title: "",
-  description: "",
-  tags: "",
-  attachments: [],
-});
 export const useRegisterProblem = () => {
-  const execute = async (problem_box_id?: number): Promise<any> => {
+  const execute = async (problem: RegisterProblemDto): Promise<any> => {
     try {
-      if (!problem_box_id)
+      if (!problem.problem_box_id)
         throw Error("É necessário o ID da Caixa de Problema");
       loading.value = true;
 
       const response = await supabase
         .from("problems")
         .insert({
-          title: problem.value.title,
-          description: problem.value.description,
-          problem_box_id,
+          title: problem.title,
+          description: problem.description,
+          problem_box_id: problem.problem_box_id,
         } as any)
         .select("id")
         .single();
 
       if (response?.data) {
-        const tagIds = await registerTags();
+        const tagIds = await registerTags(problem);
         await createRelationProblemWithTags(response.data.id, tagIds || []);
+        return response.data;
       }
-
       console.log(response);
     } catch (error) {
       console.error(error);
     } finally {
-      problem.value = {} as RegisterProblemDto;
       loading.value = false;
     }
   };
 
-  const registerTags = async (): Promise<Array<number> | undefined> => {
+  const registerTags = async (
+    problem: RegisterProblemDto
+  ): Promise<Array<number> | undefined> => {
     try {
       loading.value = true;
-      const tags = problem.value.tags.split(",").map((tag) => {
+      const tags = problem.tags.split(",").map((tag) => {
         return {
           name: tag.replace(/^\s+|\s+$/g, ""),
         };
@@ -67,7 +62,6 @@ export const useRegisterProblem = () => {
     } catch (error) {
       console.error(error);
     } finally {
-      problem.value = {} as RegisterProblemDto;
       loading.value = false;
     }
   };
@@ -105,6 +99,5 @@ export const useRegisterProblem = () => {
   return {
     loading,
     execute,
-    problem,
   };
 };
