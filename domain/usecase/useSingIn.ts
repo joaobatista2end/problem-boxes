@@ -1,8 +1,6 @@
-import type { ProblemBoxDto } from "../dto/problem-box/problem-box.dto";
-
 const loading = ref<boolean>();
 
-export const useSingUp = () => {
+export const useSingIn = () => {
   const supabase = useSupabaseClient();
 
   const execute = async (payload: {
@@ -11,11 +9,13 @@ export const useSingUp = () => {
   }): Promise<any> => {
     loading.value = true;
     try {
-      const { data, error } = await supabase.auth.signUp(payload);
+      const { data, error } = await supabase.auth.signInWithPassword(payload);
       if (error || !data) {
         console.error(error);
         return undefined;
       }
+      const user = useSupabaseUser();
+      console.log({ user });
       return data;
     } catch (error) {
       console.error(error);
