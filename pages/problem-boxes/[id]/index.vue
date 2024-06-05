@@ -108,7 +108,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useGetProblemBox } from "~/domain/usecase/useGetProblemBox";
+import { useGetProblemBox } from '~/domain/usecase/useGetProblemBox';
 
 const {
   params: { id },
@@ -123,3 +123,4 @@ onMounted(async () => {
   await execute(parseInt(id as string));
 });
 </script>
+~/modules/problems/domain/usecase/useGetProblemBox

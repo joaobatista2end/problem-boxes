@@ -32,14 +32,15 @@
 </template>
 
 <script lang="ts" setup>
-import { useFetchProblemBoxes } from "~/domain/usecase/useFetchProblemBoxes";
+import { useFetchProblemBoxes } from '~/domain/usecase/useFetchProblemBoxes';
 const { loading, execute, problemBoxes } = useFetchProblemBoxes();
 
 definePageMeta({
-  middleware: ['auth']
-})
+  middleware: ['auth'],
+});
 
 onMounted(async () => {
   await execute();
 });
 </script>
+~/modules/problems/domain/usecase/useFetchProblemBoxes

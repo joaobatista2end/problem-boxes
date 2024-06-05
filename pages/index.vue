@@ -37,8 +37,8 @@
           :disabled="loading"
           class="w-full md:w-auto py-2 px-2 bg-gradient-to-tr from-orange-300 to-amber-200 rounded-md text-sm border-orange-300 border-2 disabled:opacity-30"
         >
-          {{ loading ? "Carregando..." : "Entrar" }}
-          <LucideLogIn class="inline ml-1" :size="16"/>
+          {{ loading ? 'Carregando...' : 'Entrar' }}
+          <LucideLogIn class="inline ml-1" :size="16" />
         </button>
       </div>
     </form>
@@ -46,37 +46,37 @@
 </template>
 
 <script lang="ts" setup>
-import { toTypedSchema } from "@vee-validate/zod";
-import { useField, useForm } from "vee-validate";
-import { useRouter } from "vue-router";
-import { z } from "zod";
-import { useSingIn } from "~/domain/usecase/useSingIn";
+import { toTypedSchema } from '@vee-validate/zod';
+import { useField, useForm } from 'vee-validate';
+import { useRouter } from 'vue-router';
+import { z } from 'zod';
+import { useSingIn } from '~/domain/usecase/useSingIn';
 
 definePageMeta({
-  middleware: ['redirect-auth']
-})
+  middleware: ['redirect-auth'],
+});
 
 const router = useRouter();
 const { execute: singUp, loading } = useSingIn();
 const validationSchema = toTypedSchema(
-  z
-    .object({
-      email: z
-        .string({ message: "E-mail é obrigatório" })
-        .email({ message: "O campo deve ser um  e-mail" }),
-      password: z.string({ message: "Senha é obrigatória" }),
-    })
+  z.object({
+    email: z
+      .string({ message: 'E-mail é obrigatório' })
+      .email({ message: 'O campo deve ser um  e-mail' }),
+    password: z.string({ message: 'Senha é obrigatória' }),
+  })
 );
 
 const { handleSubmit, errors } = useForm({
   validationSchema,
 });
 
-const { value: email } = useField<string>("email");
-const { value: password } = useField<string>("password");
+const { value: email } = useField<string>('email');
+const { value: password } = useField<string>('password');
 
 const onSubmit = handleSubmit(async (payload) => {
   const response = await singUp(payload);
-  router.push({ name: 'dashboard'})
+  router.push({ name: 'dashboard' });
 });
 </script>
+~/modules/problems/domain/usecase/useSingIn

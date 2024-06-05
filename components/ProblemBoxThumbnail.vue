@@ -24,8 +24,8 @@
         >
         {{
           data.problems.length
-            ? "Problemas Cadastrados"
-            : "Sem problemas cadastrados"
+            ? 'Problemas Cadastrados'
+            : 'Sem problemas cadastrados'
         }}
       </p>
     </div>
@@ -33,13 +33,14 @@
 </template>
 
 <script lang="ts" setup>
-import type { ProblemBoxDto } from "~/domain/dto/problem-box/problem-box.dto";
+import type { ProblemBoxDto } from '~/domain/dto/problem-box/problem-box.dto';
 
 const props = defineProps<{ data: ProblemBoxDto }>();
 
 const router = useRouter();
 
 const redirectToProblemBoxPage = () => {
-  router.push({ name: "problem-boxes-id", params: { id: props.data.id } });
+  router.push({ name: 'problem-boxes-id', params: { id: props.data.id } });
 };
 </script>
+~/modules/problems/domain/dto/problem-box/problem-box.dto

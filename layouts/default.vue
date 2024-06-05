@@ -45,24 +45,25 @@
           class="font-semibold text-white px-4 py-2 rounded-md bg-slate-700"
           v-else
         >
-          {{ loading ?  'Carregando...' : 'Sair' }} 
-      </button>
+          {{ loading ? 'Carregando...' : 'Sair' }}
+        </button>
       </div>
     </div>
     <slot></slot>
   </div>
 </template>
 <script lang="ts" setup>
-import { useSingOut } from '~/domain/usecase/useSingOut'
+import { useSingOut } from '~/domain/usecase/useSingOut';
 const route = useRoute();
 const user = useSupabaseUser();
 const { execute: singOut, loading } = useSingOut();
 
 const isLoginRoute = computed(() => {
-  return route.name === "auth";
+  return route.name === 'auth';
 });
 
 const isRegisterRoute = computed(() => {
-  return route.name === "auth-register";
+  return route.name === 'auth-register';
 });
 </script>
+~/modules/problems/domain/usecase/useSingOut

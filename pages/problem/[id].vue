@@ -55,7 +55,7 @@
         <div class="mb-6">
           <span class="text-sm mr-2 text-slate-600 mb-3">
             Criado em:
-            {{ $dayjs(problem?.created_at).format("DD/MM/YYYY [às] HH:mm") }}
+            {{ $dayjs(problem?.created_at).format('DD/MM/YYYY [às] HH:mm') }}
           </span>
         </div>
 
@@ -68,7 +68,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useGetProblem } from "~/domain/usecase/useGetProblem";
+import { useGetProblem } from '~/domain/usecase/useGetProblem';
 
 const route = useRoute();
 const id = parseInt(route?.params?.id as string);
@@ -78,3 +78,4 @@ onMounted(async () => {
   await execute(id);
 });
 </script>
+~/modules/problems/domain/usecase/useGetProblem

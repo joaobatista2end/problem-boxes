@@ -57,7 +57,7 @@
             :disabled="loadingRegistreProblem"
             class="py-2 px-2 bg-gradient-to-tr from-orange-300 to-amber-200 rounded-md text-sm border-orange-300 border-2 disabled:opacity-30"
           >
-            {{ loadingRegistreProblem ? "Carregando" : "Salvar" }}
+            {{ loadingRegistreProblem ? 'Carregando' : 'Salvar' }}
             <LucideSave class="inline ml-1" :size="16" />
           </button>
         </div>
@@ -67,19 +67,19 @@
 </template>
 
 <script lang="ts" setup>
-import { useRegisterProblem } from "~/domain/usecase/useRegisterProblem";
-import { toTypedSchema } from "@vee-validate/zod";
-import { useForm, useField } from "vee-validate";
-import { z } from "zod";
+import { useRegisterProblem } from '~/domain/usecase/useRegisterProblem';
+import { toTypedSchema } from '@vee-validate/zod';
+import { useForm, useField } from 'vee-validate';
+import { z } from 'zod';
 
 // State
 const validationSchema = toTypedSchema(
   z.object({
     title: z
-      .string({ message: "Título requerido" })
-      .min(1, "Título requerido")
-      .max(180, { message: "O título deve ter no máximo 180 caracteres" }),
-    description: z.string({ message: "Descrição requerido" }),
+      .string({ message: 'Título requerido' })
+      .min(1, 'Título requerido')
+      .max(180, { message: 'O título deve ter no máximo 180 caracteres' }),
+    description: z.string({ message: 'Descrição requerido' }),
     problem_box_id: z.number().optional(),
     tags: z.string().optional(),
   })
@@ -89,9 +89,9 @@ const { handleSubmit, errors } = useForm({
   validationSchema,
 });
 
-const { value: title } = useField<string>("title");
-const { value: description } = useField<string>("description");
-const { value: tags } = useField<string>("tags");
+const { value: title } = useField<string>('title');
+const { value: description } = useField<string>('description');
+const { value: tags } = useField<string>('tags');
 
 // const fileAttachments = ref<HTMLVeeFieldElement>();
 // Composables
@@ -110,6 +110,7 @@ const onSubmit = handleSubmit(async () => {
     problem_box_id: problemBoxId,
   });
 
-  router.push({ name: "problem-id", params: { id: problem.id } });
+  router.push({ name: 'problem-id', params: { id: problem.id } });
 });
 </script>
+~/modules/problems/domain/usecase/useRegisterProblem
