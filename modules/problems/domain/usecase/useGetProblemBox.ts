@@ -1,4 +1,4 @@
-import type { ProblemBoxDto } from "../dto/problem-box/problem-box.dto";
+import type { ProblemBoxDto } from '../dto/problem-box/problem-box.dto';
 
 const loading = ref<boolean>();
 const problemBox = ref<ProblemBoxDto>();
@@ -21,7 +21,7 @@ export const useGetProblemBox = () => {
   const get = async (id: number): Promise<ProblemBoxDto | undefined> => {
     try {
       const { data, error } = await supabase.rpc(
-        "get_problem_box_with_problems",
+        'get_problem_box_with_problems',
         { p_id: id } as any
       );
 

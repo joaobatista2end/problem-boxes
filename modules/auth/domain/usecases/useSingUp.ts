@@ -1,5 +1,3 @@
-import type { ProblemBoxDto } from "../dto/problem-box/problem-box.dto";
-
 const loading = ref<boolean>();
 
 export const useSingUp = () => {

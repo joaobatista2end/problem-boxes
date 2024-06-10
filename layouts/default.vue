@@ -53,7 +53,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { useSingOut } from '~/domain/usecase/useSingOut';
+import { useSingOut } from '~/modules/auth/domain/usecases/useSingOut';
 const route = useRoute();
 const user = useSupabaseUser();
 const { execute: singOut, loading } = useSingOut();
@@ -66,4 +66,5 @@ const isRegisterRoute = computed(() => {
   return route.name === 'auth-register';
 });
 </script>
-~/modules/problems/domain/usecase/useSingOut
+~/modules/problems/domain/usecase/useSingOutimport type { useSingOut } from
+'~/modules/auth/domain/usecases/useSingOut';

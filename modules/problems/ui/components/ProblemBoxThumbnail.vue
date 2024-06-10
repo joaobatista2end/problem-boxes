@@ -33,7 +33,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { ProblemBoxDto } from '~/domain/dto/problem-box/problem-box.dto';
+import type { ProblemBoxDto } from '../../domain/dto/problem-box/problem-box.dto';
 
 const props = defineProps<{ data: ProblemBoxDto }>();
 
@@ -43,4 +43,3 @@ const redirectToProblemBoxPage = () => {
   router.push({ name: 'problem-boxes-id', params: { id: props.data.id } });
 };
 </script>
-~/modules/problems/domain/dto/problem-box/problem-box.dto
