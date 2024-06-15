@@ -35,7 +35,7 @@
       <div class="mt-6">
         <button
           :disabled="loading"
-          class="w-full md:w-auto py-2 px-2 bg-orange-300 rounded-md text-sm border-orange-300 border-2 disabled:opacity-30"
+          class="w-full md:w-auto py-2 px-2 bg-gradient-to-tr from-orange-300 to-amber-200 rounded-md text-sm border-orange-300 border-2 disabled:opacity-30"
         >
           {{ loading ? 'Carregando...' : 'Entrar' }}
           <LucideLogIn class="inline ml-1" :size="16" />

@@ -73,7 +73,7 @@ import { useForm, useField } from 'vee-validate';
 import { useRouter } from 'vue-router';
 import { useRoute } from 'vue-router';
 import { z } from 'zod';
-
+import { fold } from '~/core/either';
 // State
 const validationSchema = toTypedSchema(
   z.object({
@@ -81,7 +81,12 @@ const validationSchema = toTypedSchema(
       .string({ message: 'Título requerido' })
       .min(1, 'Título requerido')
       .max(180, { message: 'O título deve ter no máximo 180 caracteres' }),
-    description: z.string({ message: 'Descrição requerido' }),
+    description: z
+      .string({ message: 'Descrição requerido' })
+      .min(1, 'Título requerido')
+      .max(800, {
+        message: 'A descrição não pode possuir mais que 800 caracteres',
+      }),
     problem_box_id: z.number().optional(),
     tags: z.string().optional(),
   })
@@ -104,13 +109,18 @@ const { loading: loadingRegistreProblem, execute: registerProblem } =
 
 // Methods
 const onSubmit = handleSubmit(async () => {
-  const problem = await registerProblem({
+  const result = await registerProblem({
     title: title.value,
     description: description.value,
     tags: tags.value,
     problem_box_id: problemBoxId,
   });
 
-  router.push({ name: 'problem-id', params: { id: problem.id } });
+  fold(
+    (error: Error) => console.error(error),
+    (value: any) => {
+      router.push({ name: 'problem-id', params: { id: value.id } });
+    }
+  )(result);
 });
 </script>
