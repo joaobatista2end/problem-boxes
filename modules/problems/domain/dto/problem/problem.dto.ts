@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { ProblemBoxWithoutProblemsSchema } from '../problem-box/problem-box.dto';
 import { UserSchema } from '~/modules/auth/domain/dtos/user.dto';
+
 export const RegisterProblemSchema = z.object({
   title: z
     .string({ message: 'Título requerido' })
@@ -11,12 +12,14 @@ export const RegisterProblemSchema = z.object({
   user_id: z.number(),
 });
 
+
 export const ProblemSchema = z.object({
   id: z.number(),
   title: z.string().max(180),
   description: z.string(),
+  user_id: z.string().optional(),
   attachments: z.array(z.string()),
-  tags: z.array(z.string()),
+  tags: z.array(z.string()).default([]),
   problemBox: ProblemBoxWithoutProblemsSchema,
   created_at: z.string(),
   user: UserSchema,
