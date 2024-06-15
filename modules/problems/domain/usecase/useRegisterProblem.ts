@@ -2,14 +2,20 @@ import type {
   ProblemDto,
   RegisterProblemDto,
 } from "../dto/problem/problem.dto";
+import type { Either } from "@/core/either";
+import { left, right } from "@/core/either";
 
 const supabase = useSupabaseClient();
 const loading = ref<boolean>();
+
 export const useRegisterProblem = () => {
-  const execute = async (problem: RegisterProblemDto): Promise<any> => {
+  const execute = async (
+    problem: RegisterProblemDto
+  ): Promise<Either<Error, any>> => {
     try {
-      if (!problem.problem_box_id)
-        throw Error("É necessário o ID da Caixa de Problema");
+      if (!problem.problem_box_id) {
+        return left(new MissingParametersError(["problem_box_id"]));
+      }
       loading.value = true;
 
       const response = await supabase
@@ -18,18 +24,21 @@ export const useRegisterProblem = () => {
           title: problem.title,
           description: problem.description,
           problem_box_id: problem.problem_box_id,
-        } as any)
+        })
         .select("id")
         .single();
 
       if (response?.data) {
         const tagIds = await registerTags(problem);
         await createRelationProblemWithTags(response.data.id, tagIds || []);
-        return response.data;
+        return right(response.data);
+      } else if (response.error) {
+        return left(new Error(response.error.message));
+      } else {
+        return left(new Error("Unknown error"));
       }
-      console.log(response);
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      return left(new Error(error.message || error));
     } finally {
       loading.value = false;
     }
