@@ -10,7 +10,7 @@
       <button
         v-if="canDelete"
         class="text-xs p-2 font-normal bg-red-700 text-white rounded-full hover:bg-red-600 disabled:opacity-40"
-        @click.prevent="remove(problem.id)"
+        @click.prevent="handleDeleteProblem(problem.id)"
         :disabled="loading"
       >
         <LucideTrash :size="16"/>
@@ -46,7 +46,12 @@ const props = defineProps<{
   problem: ProblemDto;
 }>();
 
-const { execute: remove, loading } = useDeleteProblem();
+const { execute: deleteProblem, loading } = useDeleteProblem();
+
+const handleDeleteProblem = async (id: number) => {
+  const response = await deleteProblem(id);
+  console.log({ response })
+} 
 
 const canDelete = computed(() => {
   const session = useSupabaseSession();

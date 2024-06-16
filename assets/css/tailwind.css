@@ -31,5 +31,5 @@
 html,
 body,
 #__nuxt {
-  @apply w-full h-full scroll-smooth font-[Poppins];
+  @apply w-full h-full scroll-smooth font-[Poppins] text-zinc-700;
 }

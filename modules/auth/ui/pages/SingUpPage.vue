@@ -67,6 +67,7 @@ import { z } from 'zod';
 import { useSingUp } from '../../domain/usecases/useSingUp';
 
 const { execute: singUp, loading } = useSingUp();
+const router = useRouter();
 const validationSchema = toTypedSchema(
   z
     .object({
@@ -92,6 +93,7 @@ const { value: password } = useField<string>('password');
 const { value: confirmPassword } = useField<string>('confirmPassword');
 
 const onSubmit = handleSubmit(async (payload) => {
-  const response = await singUp(payload);
+  await singUp(payload);
+  router.push({ name: 'confirm-email'})
 });
 </script>

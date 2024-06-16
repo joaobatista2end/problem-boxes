@@ -1,7 +1,5 @@
 import { left, right, type Either } from "~/core/either";
 
-
-
 export const useDeleteProblem = () => {
   const supabase = useSupabaseClient();
   const loading = ref<boolean>();
